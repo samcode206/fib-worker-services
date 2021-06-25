@@ -22,3 +22,15 @@ after_success:
   - docker push sameem206/fib-nginx
   - docker push sameem206/fib-server
   - docker push sameem206/fib-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: 'us-west-2'
+  app: 'fib-services'
+  env: 'Fibservices-env'
+  bucket_name: 'elasticbeanstalk-us-west-2-641758240141'
+  bucket_path: 'fib-services'
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
